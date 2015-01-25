@@ -1,5 +1,5 @@
 # Flashlight
-Just an Android flashlight app, no BS
+#### Just an Android flashlight app, no BS
 --------------
 
 ## Libraries Used
