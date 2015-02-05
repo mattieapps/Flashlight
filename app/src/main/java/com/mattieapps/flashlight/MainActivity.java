@@ -20,7 +20,7 @@ import com.tjeannin.apprate.AppRate;
 public class MainActivity extends ActionBarActivity {
 
     ImageButton mLightOnOffBtn;
-    Button mMoreAppsBtn;
+    Button mMoreAppsBtn, mShareBtn;
 
     private Camera mCamera;
     private boolean isFlashOn;
@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
         // flash switch button
         mLightOnOffBtn = (ImageButton) findViewById(R.id.lightOnOffBtn);
         mMoreAppsBtn = (Button) findViewById(R.id.moreAppsBtn);
+        mShareBtn = (Button) findViewById(R.id.shareBtn);
 
 
         // First check if device is supporting flashlight or not
@@ -100,6 +101,17 @@ public class MainActivity extends ActionBarActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);
+            }
+        });
+        mShareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "I found this cool, new app for Android!");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Check out this awesome Android flashlight app I found! \nDownload it here at: http://bit.ly/androidflashlightapp");
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
     }
