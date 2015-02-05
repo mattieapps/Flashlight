@@ -1,5 +1,5 @@
 # Flashlight
-#### Just an Android flashlight app, no BS
+#### The Fastest, Safest, most Elegant Flashlight on the Play Store
 --------------
 
 ## Libraries Used
