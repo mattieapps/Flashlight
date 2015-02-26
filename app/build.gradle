@@ -6,10 +6,13 @@ android {
 
     defaultConfig {
         applicationId "com.mattieapps.flashlight"
-        minSdkVersion 8
+        minSdkVersion 10
         targetSdkVersion 21
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
+
+        resConfigs "en", "de", "fr", "it"
+        resConfigs "nodpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
     }
     buildTypes {
         release {
@@ -21,6 +24,4 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.afollestad:material-dialogs:0.6.1.2'
 }

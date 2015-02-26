@@ -1,23 +1,24 @@
 package com.mattieapps.flashlight;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.tjeannin.apprate.AppRate;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     ImageButton mLightOnOffBtn;
     Button mMoreAppsBtn, mShareBtn;
@@ -49,22 +50,19 @@ public class MainActivity extends ActionBarActivity {
 
         if (!hasFlash) {
             // device doesn't support flash
-            new MaterialDialog.Builder(this)
-                    .title("Error")
-                    .content("Sorry, your device doesn't support a flash!")
-                    .positiveText("Exit")
-                    .callback(new MaterialDialog.Callback() {
-                        @Override
-                        public void onNegative(MaterialDialog materialDialog) {
-                            return;
-                        }
 
-                        @Override
-                        public void onPositive(MaterialDialog materialDialog) {
-                            finish();
-                        }
-                    })
-                    .show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Sorry, your device doesn't support a flash!");
+            builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                    finish();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.setCancelable(false);
+            dialog.show();
+
             return;
         }
 
@@ -123,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
                 mCamera = Camera.open();
                 mParameters = mCamera.getParameters();
             } catch (RuntimeException e) {
-                Log.e("Camera Error. Failed to Open. Error: ", e.getMessage());
+                Log.e("Camera failed to Open.\n ", e.getMessage());
             }
         }
     }
@@ -182,6 +180,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        turnOffFlash();
     }
 
     @Override
@@ -190,11 +189,6 @@ public class MainActivity extends ActionBarActivity {
 
         // on pause turn off the flash
         turnOffFlash();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
     @Override
@@ -224,4 +218,5 @@ public class MainActivity extends ActionBarActivity {
             mCamera = null;
         }
     }
+
 }
