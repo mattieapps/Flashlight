@@ -1,22 +1,20 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.0"
 
     defaultConfig {
         applicationId "com.mattieapps.flashlight"
-        minSdkVersion 10
+        minSdkVersion 20
         targetSdkVersion 22
         versionCode 4
         versionName "1.1"
-
-        resConfigs "en", "de", "fr", "it"
-        resConfigs "nodpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -24,9 +22,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.support:wearable:+'
-    compile 'com.google.android.gms:play-services:6.5.87'
-    compile 'com.android.support:support-v4:22.0.0'
-
-    wearApp project(':wear')
+    compile 'com.google.android.support:wearable:1.1.0'
+    compile 'com.google.android.gms:play-services-wearable:6.5.87'
 }
