@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.mattieapps.flashlight"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 22
-        versionCode 4
-        versionName "1.1"
+        versionCode 6
+        versionName "1.2"
 
         resConfigs "en", "de", "fr", "it"
         resConfigs "nodpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
@@ -17,6 +17,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -20,13 +20,13 @@ import com.tjeannin.apprate.AppRate;
 
 public class MainActivity extends Activity {
 
-    ImageButton mLightOnOffBtn;
-    Button mMoreAppsBtn, mShareBtn;
+    private ImageButton mLightOnOffBtn;
+    private Button mMoreAppsBtn, mShareBtn;
 
     private Camera mCamera;
     private boolean isFlashOn;
     private boolean hasFlash;
-    Camera.Parameters mParameters;
+    private Camera.Parameters mParameters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         new AppRate(this)
-                .setMinDaysUntilPrompt(7)
+                .setMinDaysUntilPrompt(2)
                 .setMinLaunchesUntilPrompt(10)
                 .init();
 
