@@ -1,4 +1,4 @@
-# Flashlight
+# PrivacyFlash
 #### The Fastest, Safest, most Elegant Flashlight on the Play Store
 --------------
 
